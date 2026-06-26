@@ -466,16 +466,15 @@ footer{background:var(--brown);padding:26px 22px}
   <div class="blob hero-blob2" aria-hidden="true"></div>
   <div class="dot-bg" aria-hidden="true"></div>
 
-  <div class="hero-inner">
-    <div>
+  <div class="hero-block">
+    <div class="hero-top">
       <div class="hero-pill">
         <div class="hero-dot"></div>
         Open to Internships · Class of 2029
       </div>
-      <h1 class="hero-name">Bidoog<br><span>Shrestha</span></h1>
-      <p class="hero-hl">Data Science &amp; Economics @ Knox College</p>
+      <p class="hero-hl" style="margin-top:18px">Data Science &amp; Economics @ Knox College</p>
       <p class="hero-tl">I'm interested in how machine learning, economics, and design come together to build things that are both smart and genuinely useful. That's the space I like to work in.</p>
-      <div class="hero-btns">
+      <div class="hero-btns" style="margin-top:26px">
         <a href="#projects" class="btn btn-sky">
           See My Work
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -500,34 +499,12 @@ footer{background:var(--brown);padding:26px 22px}
       </div>
     </div>
 
-    <div class="hero-vis" aria-label="Decorative illustration">
-      <div class="hv-d hv-d4" aria-hidden="true">
-        <svg width="64" height="56" viewBox="0 0 64 56">
-          <rect x="2" y="26" width="12" height="28" rx="5" fill="#5BC4E8" opacity=".85"/>
-          <rect x="20" y="14" width="12" height="40" rx="5" fill="#FFD84D" opacity=".85"/>
-          <rect x="38" y="4"  width="12" height="50" rx="5" fill="#3ECBA8" opacity=".85"/>
-        </svg>
+    <div class="hero-bottom">
+      <h1 class="hero-headline">Bidoog<br><span>Shrestha</span></h1>
+      <div class="hero-caption">
+        <b>Data Science &amp; Economics</b>
+        <span>Knox College · Class of 2029</span>
       </div>
-      <div class="hv-d hv-d1" aria-hidden="true">
-        <svg width="46" height="46" viewBox="0 0 46 46">
-          <path d="M23 3l5 14h15L31 26l5 14-13-9-13 9 5-14L8 17h15z" fill="#FFD84D" stroke="#F0C020" stroke-width="1.5"/>
-        </svg>
-      </div>
-      <div class="hv-d hv-d2" aria-hidden="true">
-        <svg width="52" height="52" viewBox="0 0 52 52">
-          <circle cx="26" cy="26" r="24" fill="#3ECBA8" opacity=".85"/>
-          <text x="26" y="32" text-anchor="middle" font-size="15" fill="#fff" font-family="Fredoka One,sans-serif">ML</text>
-        </svg>
-      </div>
-      <div class="hv-d hv-d3" aria-hidden="true">
-        <svg width="42" height="42" viewBox="0 0 42 42">
-          <rect x="7" y="7" width="28" height="28" rx="7" fill="#FF6B5B" transform="rotate(18 21 21)" opacity=".85"/>
-        </svg>
-      </div>
-      <div class="hv-card" role="img" aria-label="Bidoog Shrestha">
-        <img src="profile.jpg" alt="Bidoog Shrestha" style="width:100%;height:100%;object-fit:cover;object-position:top;">
-      </div>
-      <div class="hv-badge" aria-label="From Kathmandu to Knox">🇳🇵 Kathmandu → Knox</div>
     </div>
   </div>
 </section>
