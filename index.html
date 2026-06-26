@@ -77,7 +77,10 @@ nav{
   transition:box-shadow .3s;
 }
 nav.scrolled{box-shadow:0 4px 24px rgba(58,39,24,.1)}
-.nav-inner{max-width:var(--max);width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-inner{max-width:var(--max);width:100%;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
+.nav-inner .nav-logo{justify-self:start}
+.nav-inner .nav-links{justify-self:center}
+.nav-inner .nav-resume{justify-self:end}
 .nav-logo{font-family:'Fredoka One',sans-serif;font-size:24px;color:var(--sky2);letter-spacing:.02em}
 .nav-logo em{font-style:normal;color:var(--coral)}
 .nav-links{display:flex;align-items:center;gap:26px}
@@ -202,6 +205,30 @@ nav.scrolled{box-shadow:0 4px 24px rgba(58,39,24,.1)}
 .hv-d3{bottom:52px;right:14px;animation:floatC 6.5s ease-in-out infinite}
 .hv-d4{top:22px;left:12px;animation:floatB 7s ease-in-out infinite}
 .hv-badge{
+  /* ── HERO RESTRUCTURE: headline bottom-left, caption bottom-right ── */
+  .hero-block{
+    max-width:var(--max);margin:0 auto;
+    position:relative;z-index:2;width:100%;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    min-height:82vh;padding:120px 22px 40px;
+  }
+  .hero-top{margin-bottom:auto}
+  .hero-bottom{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:48px;
+  }
+  .hero-headline{
+    font-family:'Fredoka One',sans-serif;
+    font-size:clamp(54px,8vw,104px);line-height:.92;color:var(--ink);
+    animation:fadeUp .9s ease .25s both;
+  }
+  .hero-headline span{color:var(--sky2)}
+  .hero-caption{text-align:right;flex-shrink:0;padding-bottom:12px;animation:fadeUp .9s ease .5s both}
+  .hero-caption b{display:block;font-size:16px;font-weight:900;color:var(--ink)}
+  .hero-caption span{font-size:13px;font-weight:700;color:var(--ink3)}
+  @media(max-width:920px){
+    .hero-bottom{flex-direction:column;align-items:flex-start;gap:24px}
+    .hero-caption{text-align:left}
+  }
   position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
   background:var(--yellow);border-radius:var(--r-pill);padding:9px 22px;
   box-shadow:0 4px 0 var(--yellow2);
@@ -439,16 +466,15 @@ footer{background:var(--brown);padding:26px 22px}
   <div class="blob hero-blob2" aria-hidden="true"></div>
   <div class="dot-bg" aria-hidden="true"></div>
 
-  <div class="hero-inner">
-    <div>
+  <div class="hero-block">
+    <div class="hero-top">
       <div class="hero-pill">
         <div class="hero-dot"></div>
         Open to Internships · Class of 2029
       </div>
-      <h1 class="hero-name">Bidoog<br><span>Shrestha</span></h1>
-      <p class="hero-hl">Data Science &amp; Economics @ Knox College</p>
-      <p class="hero-tl">Building intelligent systems and thoughtful digital experiences — where machine learning, economics, and creative design meet.</p>
-      <div class="hero-btns">
+      <p class="hero-hl" style="margin-top:18px">Data Science &amp; Economics @ Knox College</p>
+      <p class="hero-tl">I'm interested in how machine learning, economics, and design come together to build things that are both smart and genuinely useful. That's the space I like to work in.</p>
+      <div class="hero-btns" style="margin-top:26px">
         <a href="#projects" class="btn btn-sky">
           See My Work
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -473,40 +499,12 @@ footer{background:var(--brown);padding:26px 22px}
       </div>
     </div>
 
-    <!-- 3D Visual -->
-    <div class="hero-vis" aria-label="Decorative illustration">
-      <!-- mini bar chart deco -->
-      <div class="hv-d hv-d4" aria-hidden="true">
-        <svg width="64" height="56" viewBox="0 0 64 56">
-          <rect x="2" y="26" width="12" height="28" rx="5" fill="#5BC4E8" opacity=".85"/>
-          <rect x="20" y="14" width="12" height="40" rx="5" fill="#FFD84D" opacity=".85"/>
-          <rect x="38" y="4"  width="12" height="50" rx="5" fill="#3ECBA8" opacity=".85"/>
-        </svg>
+    <div class="hero-bottom">
+      <h1 class="hero-headline">Bidoog<br><span>Shrestha</span></h1>
+      <div class="hero-caption">
+        <b>Data Science &amp; Economics</b>
+        <span>Knox College · Class of 2029</span>
       </div>
-      <!-- star -->
-      <div class="hv-d hv-d1" aria-hidden="true">
-        <svg width="46" height="46" viewBox="0 0 46 46">
-          <path d="M23 3l5 14h15L31 26l5 14-13-9-13 9 5-14L8 17h15z" fill="#FFD84D" stroke="#F0C020" stroke-width="1.5"/>
-        </svg>
-      </div>
-      <!-- ML pill deco -->
-      <div class="hv-d hv-d2" aria-hidden="true">
-        <svg width="52" height="52" viewBox="0 0 52 52">
-          <circle cx="26" cy="26" r="24" fill="#3ECBA8" opacity=".85"/>
-          <text x="26" y="32" text-anchor="middle" font-size="15" fill="#fff" font-family="Fredoka One,sans-serif">ML</text>
-        </svg>
-      </div>
-      <!-- coral square -->
-      <div class="hv-d hv-d3" aria-hidden="true">
-        <svg width="42" height="42" viewBox="0 0 42 42">
-          <rect x="7" y="7" width="28" height="28" rx="7" fill="#FF6B5B" transform="rotate(18 21 21)" opacity=".85"/>
-        </svg>
-      </div>
-      <!-- Photo card -->
-      <div class="hv-card" role="img" aria-label="Bidoog Shrestha">
-        <img src="profile.jpg" alt="Bidoog Shrestha" style="width:100%;height:100%;object-fit:cover;object-position:top;">
-      </div>
-      <div class="hv-badge" aria-label="From Kathmandu to Knox">🇳🇵 Kathmandu → Knox</div>
     </div>
   </div>
 </section>
