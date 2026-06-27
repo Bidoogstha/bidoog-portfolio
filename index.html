@@ -9,6 +9,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Fredoka+One&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+
+#scroll-progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(to right,var(--sky),var(--sky2));
+  z-index:400;transition:width .1s ease-out;
+}
+
 :root {
   --cream:      #FDFAF3;
   --cream2:     #F5EDD8;
@@ -410,6 +417,8 @@ footer{background:var(--brown);padding:26px 22px}
 </head>
 <body>
 
+  <div id="scroll-progress" aria-hidden="true"></div>
+
 <!-- NAV -->
 <nav id="nv">
   <div class="nav-inner">
@@ -795,6 +804,13 @@ footer{background:var(--brown);padding:26px 22px}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
 <script>
+
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  document.getElementById('scroll-progress').style.width=scrolled+'%';
+},{passive:true});
+
 // NAV
 const nv=document.getElementById('nv');
 window.addEventListener('scroll',()=>nv.classList.toggle('scrolled',scrollY>30),{passive:true});
