@@ -171,7 +171,7 @@ nav.scrolled{box-shadow:0 4px 24px rgba(58,39,24,.1)}
   margin-bottom:14px;
   animation:fadeUp .9s ease .25s both;
 }
-.hero-name span{color:var(--sky2)}
+.hero-name .name-accent{color:var(--sky2)}
 .hero-hl{font-size:17px;font-weight:800;color:var(--ink2);margin-bottom:9px;animation:fadeUp .9s ease .4s both}
 .hero-tl{
   font-size:16px;font-weight:600;color:var(--ink3);
@@ -454,7 +454,7 @@ footer{background:var(--brown);padding:26px 22px}
         <div class="hero-dot"></div>
         Open to Internships · Class of 2029
       </div>
-      <h1 class="hero-name">Bidoog<br><span>Shrestha</span></h1>
+      <h1 class="hero-name" id="scramble-name"><span data-text="Bidoog">Bidoog</span><br><span data-text="Shrestha" class="name-accent">Shrestha</span></h1>
       <p class="hero-hl">Data Science &amp; Economics @ Knox College</p>
       <p class="hero-tl">I'm interested in how machine learning, economics, and design come together to build things that are both smart and genuinely useful. That's the space I like to work in.</p>
       <div class="hero-btns">
@@ -854,6 +854,29 @@ document.getElementById('cform').addEventListener('submit',function(e){
 window.addEventListener('load',()=>{
   if(window.VanillaTilt) VanillaTilt.init(document.querySelectorAll('[data-tilt]'),{max:4,glare:true,'max-glare':.06});
 });
+
+// SCRAMBLE NAME (desktop hover)
+(function(){
+  const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*";
+  const el=document.getElementById('scramble-name');
+  if(!el)return;
+  el.querySelectorAll('span[data-text]').forEach(word=>{
+    const real=word.getAttribute('data-text');
+    let frame;
+    word.addEventListener('mouseenter',()=>{
+      let iter=0;
+      clearInterval(frame);
+      frame=setInterval(()=>{
+        word.textContent=real.split('').map((c,i)=>
+          i<iter?real[i]:chars[Math.floor(Math.random()*chars.length)]
+        ).join('');
+        if(iter>=real.length){clearInterval(frame);word.textContent=real;}
+        iter+=1/3;
+      },45);
+    });
+  });
+})();
+
 </script>
 <div id="chat-widget" style="position:fixed;bottom:28px;right:28px;z-index:1000;font-family:'Nunito',sans-serif;">
   <button onclick="toggleChat()" style="width:58px;height:58px;border-radius:50%;border:none;background:#4EC5E8;color:white;font-size:24px;box-shadow:0 5px 0 #2FAFD4;cursor:pointer;display:flex;align-items:center;justify-content:center;">💬</button>
