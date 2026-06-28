@@ -10,6 +10,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Fredoka+One&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 
+.etabs{
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+  z-index:400;
+  display:flex; align-items:center; gap:6px;
+  background:var(--white); border:2px solid var(--cream2);
+  border-radius:18px; padding:6px 8px;
+  box-shadow:var(--sh-card);
+}
+.etab{
+  display:flex; align-items:center; gap:0;
+  border:none; background:transparent; cursor:pointer;
+  border-radius:12px; padding:8px 10px;
+  font-family:'Nunito',sans-serif; font-size:14px; font-weight:800;
+  color:var(--ink3);
+  transition:gap .35s ease, padding .35s ease, background .3s, color .3s;
+  overflow:hidden; white-space:nowrap;
+}
+.etab svg{flex-shrink:0}
+.etab .etab-label{
+  max-width:0; opacity:0;
+  transition:max-width .4s ease, opacity .3s ease;
+}
+.etab.active{
+  background:var(--sky-pale); color:var(--sky2); gap:8px;
+}
+.etab.active .etab-label{max-width:120px; opacity:1}
+.etab:hover{background:var(--cream2); color:var(--ink)}
+.etab-sep{width:1.5px; height:22px; background:var(--cream3); margin:0 3px}
+
 #scroll-progress{
   position:fixed;top:0;left:0;height:3px;width:0%;
   background:linear-gradient(to right,var(--sky),var(--sky2));
@@ -966,6 +995,40 @@ function addTyping(){
   let n=1;d._i=setInterval(()=>{const s=document.getElementById("dots");if(s)s.textContent=".".repeat((n++%3)+1);},400);
   d.remove=()=>{clearInterval(d._i);d.parentNode?.removeChild(d);};return d;
 }
+// EXPANDABLE TABS
+(function(){
+  const tabs=document.querySelectorAll('.etab[data-tab]');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      tabs.forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+})();
 </script>
+<div class="etabs" role="navigation" aria-label="Quick nav">
+  <a href="#home" class="etab" data-tab>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span class="etab-label">Home</span>
+  </a>
+  <a href="#about" class="etab" data-tab>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+    <span class="etab-label">About</span>
+  </a>
+  <div class="etab-sep" aria-hidden="true"></div>
+  <a href="#projects" class="etab" data-tab>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-3a2 2 0 0 1-2-2V2"/><path d="M9 18a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2Z"/><path d="M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8"/></svg>
+    <span class="etab-label">Projects</span>
+  </a>
+  <a href="#skills" class="etab" data-tab>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    <span class="etab-label">Skills</span>
+  </a>
+  <div class="etab-sep" aria-hidden="true"></div>
+  <a href="#contact" class="etab" data-tab>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <span class="etab-label">Contact</span>
+  </a>
+</div>
 </body>
 </html>
