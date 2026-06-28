@@ -918,8 +918,18 @@ async function sendMessage(){
     t.remove();
     if(r.status===429){addMsg("You're asking fast! Give me a moment 😄","bot");return;}
     if(!r.ok){addMsg("Something went wrong. Try again!","bot");return;}
-    const d=await r.json();
-    addMsg(d.answer,"bot");
+
+    // STREAMING: create empty bubble, append chunks as they arrive
+    const bubble=addMsg("","bot");
+    const messages=document.getElementById("chat-messages");
+    const reader=r.body.getReader();
+    const decoder=new TextDecoder();
+    while(true){
+      const {value,done}=await reader.read();
+      if(done)break;
+      bubble.textContent+=decoder.decode(value,{stream:true});
+      messages.scrollTop=messages.scrollHeight;
+    }
   }catch(e){t.remove();addMsg("Can't reach the server right now. Try again in a moment.","bot");}
 }
 function sendSuggestion(b){document.getElementById("chat-input").value=b.textContent;sendMessage();}
